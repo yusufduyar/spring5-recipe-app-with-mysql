@@ -1,1 +1,1 @@
-# Simple Recipe App With Spring Framework And MySql [![CircleCI](https://circleci.com/gh/yusufduyar/spring5-recipe-app-with-mysql/tree/master.svg?style=shield)](https://circleci.com/gh/yusufduyar/spring5-recipe-app-with-mysql/tree/master)
+# Simple Recipe App With Spring Framework And MySql [![CircleCI](https://circleci.com/gh/yusufduyar/spring5-recipe-app-with-mysql.svg?style=svg)](https://circleci.com/gh/yusufduyar/spring5-recipe-app-with-mysql)
