@@ -26,6 +26,7 @@ public class IUnitOfMeasureRepositoryIT {
 
     @Test
     public void findByDescription() throws Exception {
+        Iterable<UnitOfMeasure> unitOfMeasures = unitOfMeasureRepository.findAll();
         Optional<UnitOfMeasure> measure = unitOfMeasureRepository.findByDescription("Teaspoon");
 
         assertEquals("Teaspoon",measure.get().getDescription());

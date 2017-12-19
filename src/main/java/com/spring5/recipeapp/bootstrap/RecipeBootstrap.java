@@ -6,6 +6,7 @@ import com.spring5.recipeapp.repositories.IRecipeRepository;
 import com.spring5.recipeapp.repositories.IUnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ import java.util.Set;
 
 @Slf4j
 @Component
+@Profile("default")
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
     private ICategoryRepository categoryRepository;
@@ -34,66 +36,8 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        createCategories();
-        createUnitOfMeasures();
         recipeRepository.saveAll(getRecipes());
         log.debug("Loading Bootstrap Data");
-    }
-
-    private void createCategories(){
-        List<Category> categories = new ArrayList<>();
-
-        Category americanCat = new Category();
-        americanCat.setDescription("American");
-        categories.add(americanCat);
-
-        Category italianCat = new Category();
-        italianCat.setDescription("Italian");
-        categories.add(italianCat);
-
-        Category mexicanCat = new Category();
-        mexicanCat.setDescription("Mexican");
-        categories.add(mexicanCat);
-
-        categoryRepository.saveAll(categories);
-    }
-
-    private void createUnitOfMeasures(){
-        List<UnitOfMeasure> unitOfMeasures = new ArrayList<>();
-
-        UnitOfMeasure teaspoon = new UnitOfMeasure();
-        teaspoon.setDescription("Teaspoon");
-        unitOfMeasures.add(teaspoon);
-
-        UnitOfMeasure Tablespoon = new UnitOfMeasure();
-        Tablespoon.setDescription("Tablespoon");
-        unitOfMeasures.add(Tablespoon);
-
-        UnitOfMeasure Cup = new UnitOfMeasure();
-        Cup.setDescription("Cup");
-        unitOfMeasures.add(Cup);
-
-        UnitOfMeasure Pinch = new UnitOfMeasure();
-        Pinch.setDescription("Pinch");
-        unitOfMeasures.add(Pinch);
-
-        UnitOfMeasure Ounce = new UnitOfMeasure();
-        Ounce.setDescription("Ounce");
-        unitOfMeasures.add(Ounce);
-
-        UnitOfMeasure Each = new UnitOfMeasure();
-        Each.setDescription("Each");
-        unitOfMeasures.add(Each);
-
-        UnitOfMeasure Dash = new UnitOfMeasure();
-        Dash.setDescription("Dash");
-        unitOfMeasures.add(Dash);
-
-        UnitOfMeasure Pint = new UnitOfMeasure();
-        Pint.setDescription("Pint");
-        unitOfMeasures.add(Pint);
-
-        unitOfMeasureRepository.saveAll(unitOfMeasures);
     }
 
     private List<Recipe> getRecipes() {
